@@ -9,6 +9,7 @@ This UI includes support for idle mining. If the box is checked, the UI will onl
 This miner supports what ccminer supports:
 
 ```
+uniformfiscalobject (UFOcoin)
 bastion     (Joincoin)
 bitcore     (Bitcore's Timetravel10)
 blake       (Saffroncoin (Blake256))
