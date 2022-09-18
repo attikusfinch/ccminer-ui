@@ -55,43 +55,45 @@ namespace ccminer_gui
             if (_stratumDifficulty.IsMatch(data))
             {
                 var match = _stratumDifficulty.Match(data);
-                _minerReport.StratumDifficulty = Convert.ToDecimal(match.Groups[1].Value);
+                _minerReport.StratumDifficulty = Convert.ToDecimal(match.Groups[1].Value.Replace(".", ","));
             }
 
             if (_blockDifficulty.IsMatch(data))
             {
                 var match = _blockDifficulty.Match(data);
-                _minerReport.Block = Convert.ToInt32(match.Groups[1].Value);
-                _minerReport.BlockDifficulty = Convert.ToDecimal(match.Groups[2].Value);
+                _minerReport.Block = Convert.ToInt32(match.Groups[1].Value.Replace(".", ","));
+                _minerReport.BlockDifficulty = Convert.ToDecimal(match.Groups[2].Value.Replace(".", ","));
             }
 
             if (_gpuMatch.IsMatch(data))
             {
                 var match = _gpuMatch.Match(data);
+                string hash = match.Groups[1].Value.Replace(".", ",");
                 if (match.Groups[2].Value == "MH/s")
                 {
-                    _minerReport.TotalHashrate = Convert.ToDecimal(match.Groups[1].Value);
+                    _minerReport.TotalHashrate = Convert.ToDecimal(hash);
                 }
                 else
                 {
-                    _minerReport.TotalHashrate = (Convert.ToDecimal(match.Groups[1].Value) / 1000);
+                    _minerReport.TotalHashrate = Convert.ToDecimal(hash) / 1000;
                 }
             }
 
             if (_sharesMatch.IsMatch(data))
             {
                 var match = _sharesMatch.Match(data);
+                string hash = match.Groups[3].Value.Replace(".", ",");
                 _minerReport.AcceptedShares = Convert.ToInt32(match.Groups[1].Value);
                 _minerReport.TotalShares = Convert.ToInt32(match.Groups[2].Value);
                 _minerReport.StaleShares = _minerReport.TotalShares - _minerReport.AcceptedShares;
 
                 if (match.Groups[4].Value == "MH/s")
                 {
-                    _minerReport.TotalHashrate = Convert.ToDecimal(match.Groups[3].Value);
+                    _minerReport.TotalHashrate = Convert.ToDecimal(hash);
                 }
                 else
                 {
-                    _minerReport.TotalHashrate = (Convert.ToDecimal(match.Groups[3].Value) / 1000);
+                    _minerReport.TotalHashrate = Convert.ToDecimal(hash) / 1000;
                 }
             }
         }

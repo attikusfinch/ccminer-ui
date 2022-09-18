@@ -53,6 +53,7 @@ namespace ccminer_gui
                 Algorithm.Create("penta", "Joincoin / Pentablake"),
                 Algorithm.Create("phi", "LUXCoin"),
                 Algorithm.Create("polytimos", "Polytimos"),
+                Algorithm.Create("neoscrypt", "UFOCOIN"),
                 Algorithm.Create("quark", "Quarkcoin"),
                 Algorithm.Create("qubit", "Qubit"),
                 Algorithm.Create("scrypt", "Scrypt coins"),
